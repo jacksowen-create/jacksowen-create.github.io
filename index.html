@@ -1,29 +1,1603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacksowen Create</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
-            padding: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-            font-size: 18px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veralux Commerce | Cross-Border Multi-Channel Retail &amp; Distribution</title>
+  <meta name="description" content="Veralux Commerce is a UK-registered multi-channel e-commerce retailer and consumer goods distributor operating across UK and European marketplaces." />
+  <style>
+    /* =========================================================
+       RESET & BASE
+    ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #0D1B2A;
+      --navy-mid:    #122436;
+      --navy-light:  #1A3150;
+      --accent:      #2A7AE2;
+      --accent-light:#4A94F5;
+      --accent-glow: rgba(42,122,226,0.18);
+      --white:       #FFFFFF;
+      --off-white:   #F4F6FA;
+      --grey-100:    #E8ECF2;
+      --grey-300:    #B0BBCC;
+      --grey-500:    #6B7A8F;
+      --grey-700:    #3D4A5C;
+      --charcoal:    #1E2833;
+
+      --font-display: 'Georgia', 'Times New Roman', serif;
+      --font-body:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+      --radius-sm:   4px;
+      --radius-md:   8px;
+      --radius-lg:   16px;
+
+      --shadow-card: 0 2px 20px rgba(13,27,42,0.12), 0 1px 4px rgba(13,27,42,0.08);
+      --shadow-lg:   0 8px 48px rgba(13,27,42,0.22);
+
+      --transition:  0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* =========================================================
+       UTILITY
+    ========================================================= */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-inline: 32px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 4px 24px rgba(42,122,226,0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.35);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      padding: 10px 22px;
+    }
+    .btn-ghost:hover {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 4px 24px rgba(42,122,226,0.28);
+    }
+
+    /* =========================================================
+       HEADER / NAV
+    ========================================================= */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(13, 27, 42, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .logo-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey-300);
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--grey-300);
+      letter-spacing: 0.01em;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .partner-portal-btn {
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-light);
+      border: 1.5px solid rgba(74,148,245,0.4);
+      border-radius: var(--radius-sm);
+      background: rgba(42,122,226,0.08);
+      transition: all var(--transition);
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .partner-portal-btn:hover {
+      background: rgba(42,122,226,0.18);
+      border-color: var(--accent-light);
+      color: var(--white);
+    }
+    .portal-dot {
+      width: 7px;
+      height: 7px;
+      background: #3DCC7A;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #3DCC7A;
+      animation: pulse-dot 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--navy);
+      overflow: hidden;
+      padding-top: 68px;
+    }
+
+    /* Geometric background texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(42,122,226,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,122,226,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Radial glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 70vw;
+      height: 70vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,122,226,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding-block: 100px 80px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(42,122,226,0.12);
+      border: 1px solid rgba(42,122,226,0.28);
+      border-radius: 100px;
+      padding: 5px 14px 5px 8px;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-light);
+      border-radius: 50%;
+    }
+
+    .hero-badge span {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 4.2vw, 54px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent-light);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--grey-300);
+      max-width: 480px;
+      margin-bottom: 38px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta-group .btn-primary {
+      padding: 14px 32px;
+      font-size: 15px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .stat-box {
+      padding: 36px 32px;
+      background: rgba(13,27,42,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: background var(--transition);
+    }
+    .stat-box:hover { background: rgba(26,49,80,0.7); }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-number span {
+      font-size: 22px;
+      color: var(--accent-light);
+    }
+
+    .stat-label {
+      font-size: 12.5px;
+      color: var(--grey-300);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       MARQUEE STRIP
+    ========================================================= */
+    .marquee-strip {
+      background: var(--accent);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 28s linear infinite;
+      width: max-content;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-inline: 32px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .marquee-item::after {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+    }
+
+    /* =========================================================
+       OPERATIONAL OVERVIEW
+    ========================================================= */
+    .section-overview {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .overview-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .overview-content p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--grey-700);
+      margin-bottom: 20px;
+    }
+
+    .overview-content p strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .overview-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .pillar-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--grey-100);
+      background: var(--off-white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .pillar-row:hover {
+      border-color: rgba(42,122,226,0.25);
+      box-shadow: var(--shadow-card);
+    }
+
+    .pillar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: rgba(42,122,226,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pillar-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pillar-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+    .pillar-text span {
+      font-size: 13px;
+      color: var(--grey-500);
+    }
+
+    .overview-visual {
+      position: relative;
+    }
+
+    .overview-map-card {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .overview-map-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(42,122,226,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,122,226,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .map-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .map-card-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .network-nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .network-node {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .node-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .node-dot::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid;
+      border-color: inherit;
+      opacity: 0.3;
+    }
+
+    .node-dot.uk {
+      background: #3DCC7A;
+      border-color: #3DCC7A;
+    }
+    .node-dot.de {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+    }
+
+    .node-info strong {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .node-info span {
+      font-size: 12px;
+      color: var(--grey-300);
+    }
+
+    .map-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin-bottom: 24px;
+    }
+
+    .map-metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .map-metric {
+      text-align: center;
+    }
+
+    .map-metric-val {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .map-metric-lbl {
+      font-size: 11px;
+      color: var(--grey-300);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================================================
+       CORE SECTORS
+    ========================================================= */
+    .section-sectors {
+      padding: 100px 0;
+      background: var(--off-white);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 620px;
+      margin-inline: auto;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--grey-500);
+    }
+
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .sector-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--grey-100);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sector-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .sector-card:hover {
+      box-shadow: 0 12px 48px rgba(13,27,42,0.12);
+      border-color: rgba(42,122,226,0.2);
+      transform: translateY(-4px);
+    }
+    .sector-card:hover::before { transform: scaleX(1); }
+
+    .sector-icon-wrap {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(42,122,226,0.12), rgba(42,122,226,0.04));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      border: 1px solid rgba(42,122,226,0.15);
+    }
+
+    .sector-icon-wrap svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sector-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+      font-family: var(--font-display);
+    }
+
+    .sector-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--grey-500);
+      margin-bottom: 28px;
+      flex: 1;
+    }
+
+    .sector-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sector-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(42,122,226,0.08);
+      border: 1px solid rgba(42,122,226,0.15);
+      border-radius: 100px;
+      padding: 4px 12px;
+      letter-spacing: 0.03em;
+    }
+
+    /* =========================================================
+       INQUIRY FORM
+    ========================================================= */
+    .section-form {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .form-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .form-intro h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+
+    .form-intro p {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--grey-500);
+      margin-bottom: 36px;
+    }
+
+    .form-trust-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-trust-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14.5px;
+      color: var(--grey-700);
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(61,204,122,0.12);
+      border: 1px solid rgba(61,204,122,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .check-icon svg {
+      width: 11px;
+      height: 11px;
+      stroke: #3DCC7A;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .inquiry-form {
+      background: var(--off-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--grey-100);
+      padding: 44px 40px;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 20px;
+    }
+    .form-field:last-of-type { margin-bottom: 0; }
+
+    .form-field label {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--grey-700);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1.5px solid var(--grey-100);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      outline: none;
+      width: 100%;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7A8F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(42,122,226,0.1);
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--grey-300);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .form-submit-row {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-submit-row .btn-primary {
+      width: 100%;
+      justify-content: center;
+      padding: 15px;
+      font-size: 15px;
+    }
+
+    .form-disclaimer {
+      font-size: 12px;
+      color: var(--grey-500);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    .site-footer {
+      background: var(--navy);
+      color: var(--grey-300);
+    }
+
+    .footer-main {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-brand .logo-name { font-size: 19px; color: var(--white); }
+
+    .footer-tagline {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--grey-300);
+      margin-top: 14px;
+      margin-bottom: 24px;
+      max-width: 300px;
+    }
+
+    .footer-cert-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cert-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-300);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-sm);
+      padding: 5px 11px;
+    }
+
+    .footer-col-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .footer-address {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--grey-300);
+      font-style: normal;
+    }
+
+    .footer-address strong {
+      display: block;
+      color: var(--white);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .footer-address .country-pill {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(42,122,226,0.2);
+      border: 1px solid rgba(42,122,226,0.35);
+      color: var(--accent-light);
+      border-radius: 100px;
+      padding: 2px 9px;
+      margin-bottom: 8px;
+    }
+
+    .footer-reg-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-reg-list li {
+      font-size: 12.5px;
+      color: var(--grey-500);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .footer-reg-list li span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--grey-500);
+    }
+
+    .footer-reg-list li strong {
+      color: var(--grey-300);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+    }
+
+    .footer-bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copyright {
+      font-size: 12.5px;
+      color: var(--grey-500);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 12.5px;
+      color: var(--grey-500);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--grey-300); }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 1024px) {
+      .hero-inner     { grid-template-columns: 1fr; gap: 60px; padding-block: 80px 60px; }
+      .hero-stats     { grid-template-columns: repeat(4, 1fr); }
+      .overview-grid  { grid-template-columns: 1fr; gap: 56px; }
+      .sectors-grid   { grid-template-columns: 1fr 1fr; }
+      .form-layout    { grid-template-columns: 1fr; gap: 56px; }
+      .footer-grid    { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding-inline: 20px; }
+      .nav-links  { display: none; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .sectors-grid { grid-template-columns: 1fr; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .inquiry-form { padding: 32px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats      { grid-template-columns: 1fr 1fr; }
+      .hero-cta-group  { flex-direction: column; align-items: flex-start; }
+      .footer-bottom-inner { flex-direction: column; text-align: center; }
+    }
+
+    /* =========================================================
+       SCROLL ANIMATIONS
+    ========================================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
 </head>
 <body>
 
-    <h1>Welcome to Jacksowen Create</h1>
-    <p>My GitHub Pages website is officially under construction!</p>
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-inner">
+
+        <a href="#" class="nav-logo" aria-label="Veralux Commerce Home">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name">Veralux Commerce</span>
+            <span class="logo-sub">Multi-Channel Distribution</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#overview">Operations</a></li>
+          <li><a href="#sectors">Sectors</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <a href="#contact" class="partner-portal-btn">
+            <span class="portal-dot"></span>
+            Partner Portal
+          </a>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" aria-label="Hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span>UK Registered &amp; EU Market Active</span>
+          </div>
+          <h1>Cross-Border <em>Multi-Channel</em> Retail &amp; Consumer Goods Distribution</h1>
+          <p class="hero-sub">
+            Veralux Commerce operates as a specialist multi-channel e-commerce retailer and consumer goods distributor, sourcing and supplying premium branded product categories across the United Kingdom and European digital marketplaces—underpinned by a robust, cross-border logistics infrastructure.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#contact" class="btn btn-primary">Partner With Us</a>
+            <a href="#sectors" class="btn btn-outline">View Our Sectors</a>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-box">
+            <div class="stat-number">2<span>mkts</span></div>
+            <div class="stat-label">UK &amp; EU Operations</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">3<span>+</span></div>
+            <div class="stat-label">Core Product Sectors</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">B2B<span></span></div>
+            <div class="stat-label">Trade &amp; Partner Focus</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">UK<span>Ltd</span></div>
+            <div class="stat-label">Registered Company</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       MARQUEE STRIP
+  ============================================================ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">Multi-Channel E-Commerce</div>
+      <div class="marquee-item">UK &amp; European Distribution</div>
+      <div class="marquee-item">Consumer Goods Procurement</div>
+      <div class="marquee-item">Cross-Border Logistics</div>
+      <div class="marquee-item">Brand Partnership Programmes</div>
+      <div class="marquee-item">Localized Fulfillment Networks</div>
+      <div class="marquee-item">Multi-Channel E-Commerce</div>
+      <div class="marquee-item">UK &amp; European Distribution</div>
+      <div class="marquee-item">Consumer Goods Procurement</div>
+      <div class="marquee-item">Cross-Border Logistics</div>
+      <div class="marquee-item">Brand Partnership Programmes</div>
+      <div class="marquee-item">Localized Fulfillment Networks</div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       OPERATIONAL OVERVIEW
+  ============================================================ -->
+  <section class="section-overview" id="overview">
+    <div class="container">
+      <div class="overview-grid">
+
+        <div class="overview-content reveal">
+          <span class="section-label">Operational Infrastructure</span>
+          <h2>A Reliable, Scalable Distribution Partner</h2>
+          <p>
+            Veralux Commerce provides brand owners, manufacturers, and logistics partners with a dependable channel into UK and EU consumer marketplaces. We manage the full operational cycle—from procurement and inventory management through to last-mile delivery—allowing our supply partners to extend market reach without operational complexity.
+          </p>
+          <p>
+            <strong>Leveraging strategic cross-border logistics and localized European fulfillment networks to deliver premium brands directly to digital marketplaces.</strong> Our infrastructure is designed for speed, compliance, and scalability across both UK and EU regulatory environments.
+          </p>
+
+          <div class="overview-pillars">
+            <div class="pillar-row">
+              <div class="pillar-icon">
+                <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <div class="pillar-text">
+                <strong>Localized Fulfillment Networks</strong>
+                <span>Dedicated logistics infrastructure in both the United Kingdom and Germany supporting fast, compliant delivery across both markets.</span>
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <div class="pillar-text">
+                <strong>Multi-Category Product Portfolio</strong>
+                <span>A diversified commercial portfolio spanning automotive care, personal care, and household consumer goods sectors.</span>
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="pillar-text">
+                <strong>Regulatory Compliance</strong>
+                <span>Fully compliant with UK and EU requirements including EPR obligations, VerpackG (Germany), and applicable VAT frameworks.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-visual reveal reveal-delay-2">
+          <div class="overview-map-card">
+            <div class="map-card-inner">
+              <div class="map-card-label">Active Fulfillment Network</div>
+              <div class="network-nodes">
+                <div class="network-node">
+                  <div class="node-dot uk"></div>
+                  <div class="node-info">
+                    <strong>United Kingdom</strong>
+                    <span>Head Office &amp; Primary Fulfillment Hub</span>
+                  </div>
+                </div>
+                <div class="network-node">
+                  <div class="node-dot de"></div>
+                  <div class="node-info">
+                    <strong>Germany (DE)</strong>
+                    <span>EU Logistics Hub &amp; Distribution Centre</span>
+                  </div>
+                </div>
+              </div>
+              <div class="map-divider"></div>
+              <div class="map-metric-row">
+                <div class="map-metric">
+                  <div class="map-metric-val">2</div>
+                  <div class="map-metric-lbl">Markets</div>
+                </div>
+                <div class="map-metric">
+                  <div class="map-metric-val">B2C</div>
+                  <div class="map-metric-lbl">&amp; B2B</div>
+                </div>
+                <div class="map-metric">
+                  <div class="map-metric-val">EU</div>
+                  <div class="map-metric-lbl">Compliant</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CORE SECTORS
+  ============================================================ -->
+  <section class="section-sectors" id="sectors">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Commercial Portfolio</span>
+        <h2>Our Core Retail &amp; Distribution Sectors</h2>
+        <p>We operate across three principal consumer goods categories, maintaining curated relationships with brand owners and procurement channels to deliver quality-assured product to digital marketplaces at scale.</p>
+      </div>
+
+      <div class="sectors-grid">
+
+        <!-- Card 1 -->
+        <div class="sector-card reveal reveal-delay-1">
+          <div class="sector-icon-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M3.05 11a9 9 0 0 1 17.9 0"/></svg>
+          </div>
+          <div class="sector-title">Automotive &amp; Precision Care</div>
+          <p class="sector-desc">
+            We source and retail a focused range of premium automotive care products—including specialist cleaning compounds, detailing solutions, and vehicle protection treatments—distributed through leading UK and EU digital marketplaces. Our category includes established specialist brands trusted across the professional and consumer detailing market.
+          </p>
+          <div class="sector-tags">
+            <span class="sector-tag">Vehicle Care</span>
+            <span class="sector-tag">Detailing Solutions</span>
+            <span class="sector-tag">Premium Brands</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="sector-card reveal reveal-delay-2">
+          <div class="sector-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="sector-title">Dermatological Skincare &amp; Personal Care</div>
+          <p class="sector-desc">
+            Our personal care category spans skincare, haircare, and cosmetics—encompassing both dermatologically tested formulations and mass-premium consumer brands. We serve a broad consumer audience across the UK and European markets, supplying brand-name products through established multichannel retail channels.
+          </p>
+          <div class="sector-tags">
+            <span class="sector-tag">Skincare</span>
+            <span class="sector-tag">Hair Care</span>
+            <span class="sector-tag">Cosmetics</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="sector-card reveal reveal-delay-3">
+          <div class="sector-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="sector-title">Household Care &amp; Consumer Cleaning Solutions</div>
+          <p class="sector-desc">
+            We distribute a commercially relevant range of household care and consumer cleaning products—including surface treatments, fabric care, and general household consumables. This category supports both regular replenishment demand and emerging premium household cleaning brands seeking wider digital market distribution.
+          </p>
+          <div class="sector-tags">
+            <span class="sector-tag">Surface Care</span>
+            <span class="sector-tag">Fabric Care</span>
+            <span class="sector-tag">Household</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SUPPLIER INQUIRY FORM
+  ============================================================ -->
+  <section class="section-form" id="contact">
+    <div class="container">
+      <div class="form-layout">
+
+        <div class="form-intro reveal">
+          <span class="section-label">Partnership Enquiries</span>
+          <h2>Work With Us as a Supply or Logistics Partner</h2>
+          <p>
+            We are actively seeking relationships with brand owners, authorised distributors, and 3PL logistics providers operating in the UK and European consumer goods space. If you represent a brand or supply chain capability aligned with our commercial sectors, we welcome your enquiry.
+          </p>
+          <ul class="form-trust-list">
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></span>
+              UK Limited Company with active VAT registration
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></span>
+              Established fulfilment operations across UK and Germany
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></span>
+              EPR and VerpackG registered for EU packaging compliance
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></span>
+              Multi-category consumer goods procurement expertise
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></span>
+              Responsive commercial team — reply within 2 business days
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="inquiry-form">
+            <form name="partner-inquiry" method="POST" action="#" aria-label="Partner Inquiry Form">
+
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="full-name">Full Name</label>
+                  <input type="text" id="full-name" name="full_name" placeholder="Jane Smith" autocomplete="name" required />
+                </div>
+                <div class="form-field">
+                  <label for="work-email">Work Email</label>
+                  <input type="email" id="work-email" name="work_email" placeholder="jane@company.com" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="company-name">Company Name</label>
+                <input type="text" id="company-name" name="company_name" placeholder="Your Company Ltd" autocomplete="organization" required />
+              </div>
+
+              <div class="form-field">
+                <label for="inquiry-type">Enquiry Type</label>
+                <select id="inquiry-type" name="inquiry_type" required>
+                  <option value="" disabled selected>Select enquiry type…</option>
+                  <option value="brand_partnership">Brand Partnership</option>
+                  <option value="logistics_3pl">Logistics / 3PL</option>
+                  <option value="general">General Enquiry</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="message">Brief Overview</label>
+                <textarea id="message" name="message" placeholder="Please outline your product range, distribution capabilities, or the nature of your enquiry…"></textarea>
+              </div>
+
+              <div class="form-submit-row">
+                <button type="submit" class="btn btn-primary">Submit Partnership Enquiry</button>
+                <p class="form-disclaimer">Your enquiry is treated in strict confidence. We do not share contact details with third parties.</p>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+
+          <!-- Brand -->
+          <div>
+            <div class="nav-logo footer-brand">
+              <div class="logo-mark">
+                <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="logo-text">
+                <span class="logo-name">Veralux Commerce</span>
+                <span class="logo-sub">Multi-Channel Distribution</span>
+              </div>
+            </div>
+            <p class="footer-tagline">A UK-registered multi-channel e-commerce retailer and consumer goods distributor, operating across UK and European digital marketplaces with localized fulfillment infrastructure.</p>
+            <div class="footer-cert-badges">
+              <span class="cert-badge">UK Ltd</span>
+              <span class="cert-badge">VAT Reg.</span>
+              <span class="cert-badge">EPR Reg.</span>
+              <span class="cert-badge">VerpackG</span>
+            </div>
+          </div>
+
+          <!-- UK Office -->
+          <div>
+            <div class="footer-col-title">UK Registered Office</div>
+            <address class="footer-address">
+              <span class="country-pill">🇬🇧 United Kingdom</span>
+              <strong>Veralux Commerce Ltd</strong>
+              [Registered Address Line 1]<br />
+              [Town / City], [Postcode]<br />
+              England<br /><br />
+              <a href="mailto:enquiries@veraluxcommerce.co.uk" style="color:var(--accent-light)">enquiries@veraluxcommerce.co.uk</a>
+            </address>
+          </div>
+
+          <!-- Germany Hub -->
+          <div>
+            <div class="footer-col-title">EU Logistics Hub</div>
+            <address class="footer-address">
+              <span class="country-pill">🇩🇪 Germany</span>
+              <strong>Distribution &amp; Logistics</strong>
+              [Warehouse / Logistics Address]<br />
+              [City], [Postleitzahl]<br />
+              Deutschland<br /><br />
+              <span style="color:var(--grey-500);font-size:12px;">EU Logistics &amp; Fulfillment Partner</span>
+            </address>
+          </div>
+
+          <!-- Registrations -->
+          <div>
+            <div class="footer-col-title">Registrations &amp; Compliance</div>
+            <ul class="footer-reg-list">
+              <li>
+                <span>UK Company Registration</span>
+                <strong>[Company No. XXXXXXXX]</strong>
+              </li>
+              <li>
+                <span>UK VAT Registration</span>
+                <strong>[GB XXX XXXX XX]</strong>
+              </li>
+              <li>
+                <span>DE VAT / USt-IdNr.</span>
+                <strong>[DE XXXXXXXXX]</strong>
+              </li>
+              <li>
+                <span>UK EPR Registration</span>
+                <strong>[EPR Ref. XXXXXXXXXX]</strong>
+              </li>
+              <li>
+                <span>DE VerpackG (Packaging)</span>
+                <strong>[LUCID Reg. No. XXXXXXXXXX]</strong>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copyright">
+            &copy; <span id="footer-year"></span> Veralux Commerce Ltd. All rights reserved. Registered in England &amp; Wales.
+          </p>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Trade</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    // Dynamic footer year
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header shadow on scroll
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      header.style.boxShadow = window.scrollY > 10
+        ? '0 4px 32px rgba(13,27,42,0.35)'
+        : 'none';
+    }, { passive: true });
+  </script>
 
 </body>
 </html>
