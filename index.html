@@ -3,691 +3,1075 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JG Distributions | Global Supply Chain & Distribution Partners</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>JG Distributions – Multi-Category Wholesale Trade Directory</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#0F172A',
-            'navy-light': '#1E293B',
-            teal: '#0D9488',
-            'teal-dark': '#0B7A6F',
-            'teal-light': '#14B8A6',
-            slate: '#F8FAFC',
-          },
-          fontFamily: {
-            display: ['Syne', 'sans-serif'],
-            body: ['DM Sans', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #ffffff; color: #0F172A; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Syne', sans-serif; }
-
-    /* Nav link underline animation */
-    .nav-link {
-      position: relative;
-      color: #CBD5E1;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      transition: color 0.2s ease;
+    :root {
+      --navy:      #1E293B;
+      --navy-mid:  #2D3F55;
+      --teal:      #0D9488;
+      --teal-dark: #0A7A70;
+      --teal-lite: #CCFBF1;
+      --slate:     #64748B;
+      --slate-lt:  #94A3B8;
+      --off-white: #F8FAFC;
+      --white:     #FFFFFF;
+      --border:    #E2E8F0;
+      --text:      #1E293B;
+      --text-mid:  #334155;
     }
-    .nav-link::after {
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────── */
+    .serif { font-family: 'Fraunces', serif; }
+
+    h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; }
+
+    /* ─── UTILITY ────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+      gap: 1.5rem;
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+      margin-left: 4px;
+      vertical-align: middle;
+      margin-bottom: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #FFFFFF; }
+
+    .btn-trade {
+      background: var(--teal);
+      color: #FFFFFF !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-trade:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      margin-top: 64px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 0 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
       content: '';
       position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 1.5px;
-      background: #0D9488;
-      transition: width 0.25s ease;
-    }
-    .nav-link:hover { color: #ffffff; }
-    .nav-link:hover::after { width: 100%; }
-
-    /* Hero text fade-up */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up-1 { animation: fadeUp 0.7s ease forwards; }
-    .fade-up-2 { animation: fadeUp 0.7s 0.15s ease both; }
-    .fade-up-3 { animation: fadeUp 0.7s 0.3s ease both; }
-
-    /* Hero rule line */
-    .hero-rule {
-      width: 48px; height: 2px;
-      background: #0D9488;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Capability cards */
-    .cap-card {
-      border: 1px solid #E2E8F0;
-      background: #F8FAFC;
-      border-radius: 4px;
-      padding: 2rem 1.75rem;
-      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-    }
-    .cap-card:hover {
-      border-color: #0D9488;
-      box-shadow: 0 8px 32px rgba(13,148,136,0.08);
-      transform: translateY(-3px);
-    }
-
-    /* Sector items */
-    .sector-item {
-      border-left: 3px solid #0D9488;
-      padding-left: 1.5rem;
-      transition: border-color 0.2s;
-    }
-    .sector-item:hover { border-color: #0F172A; }
-
-    /* Form inputs */
-    .form-input {
-      width: 100%;
-      border: 1.5px solid #CBD5E1;
-      border-radius: 3px;
-      padding: 0.75rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      color: #0F172A;
-      background: #ffffff;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .form-input:focus {
-      border-color: #0D9488;
-      box-shadow: 0 0 0 3px rgba(13,148,136,0.12);
-    }
-    .form-input::placeholder { color: #94A3B8; }
-
-    /* Teal button */
-    .btn-teal {
-      background: #0D9488;
-      color: #ffffff;
-      font-family: 'Syne', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      font-size: 0.875rem;
-      padding: 0.7rem 1.5rem;
-      border-radius: 3px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .btn-teal:hover {
-      background: #0B7A6F;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(13,148,136,0.3);
-    }
-
-    /* Navy button */
-    .btn-navy {
-      background: #0F172A;
-      color: #ffffff;
-      font-family: 'Syne', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      font-size: 0.9rem;
-      padding: 0.875rem 2.25rem;
-      border-radius: 3px;
-      border: none;
-      cursor: pointer;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-navy:hover {
-      background: #1E293B;
-      transform: translateY(-1px);
-    }
-
-    /* Section label tag */
-    .section-tag {
-      display: inline-block;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #0D9488;
-      border: 1px solid #0D9488;
-      padding: 0.2rem 0.65rem;
-      border-radius: 2px;
-      margin-bottom: 1rem;
-    }
-
-    /* Footer link */
-    .footer-link {
-      color: #94A3B8;
-      text-decoration: none;
-      transition: color 0.2s;
-      font-size: 0.9rem;
-    }
-    .footer-link:hover { color: #0D9488; }
-
-    /* Subtle hero grid overlay */
-    .hero-grid {
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      position: absolute;
-      inset: 0;
+      right: -60px; top: -60px;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(13,148,136,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    /* Mobile nav toggle */
-    #mobile-menu { display: none; }
-    #mobile-menu.open { display: block; }
-
-    @media (max-width: 768px) {
-      .desktop-nav { display: none !important; }
-      .mobile-toggle { display: flex !important; }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
     }
-    .mobile-toggle { display: none; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--teal-lite);
+      color: var(--teal-dark);
+      border: 1px solid rgba(13,148,136,0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge svg { flex-shrink: 0; }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero p {
+      font-size: 1.0625rem;
+      color: var(--text-mid);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--teal);
+      color: #FFFFFF;
+      padding: 0.8rem 1.75rem;
+      border-radius: 7px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(13,148,136,0.25);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .stat-card {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .stat-card .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-card .stat-num span { color: var(--teal); }
+
+    .stat-card .stat-label {
+      font-size: 0.8125rem;
+      color: var(--slate);
+      margin-top: 0.35rem;
+      font-weight: 500;
+    }
+
+    /* ─── SUPPLY CHAIN SECTION ───────────────────── */
+    .section-supply {
+      background: var(--off-white);
+      padding: 5rem 0;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--slate);
+      max-width: 560px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .section-head {
+      margin-bottom: 3rem;
+    }
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .cap-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .cap-card:hover {
+      box-shadow: 0 8px 32px rgba(30,41,59,0.08);
+      transform: translateY(-3px);
+    }
+
+    .cap-icon {
+      width: 48px; height: 48px;
+      background: var(--teal-lite);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--teal-dark);
+      flex-shrink: 0;
+    }
+
+    .cap-card h3 {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.625rem;
+    }
+
+    .cap-card p {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ─── PRODUCT DIRECTORY ──────────────────────── */
+    .section-directory {
+      background: var(--white);
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .directory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .dir-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      background: var(--off-white);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .dir-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .dir-card:hover {
+      box-shadow: 0 6px 24px rgba(13,148,136,0.1);
+      transform: translateY(-3px);
+      border-color: rgba(13,148,136,0.35);
+    }
+
+    .dir-card:hover::before { transform: scaleX(1); }
+
+    .dir-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--teal-dark);
+    }
+
+    .dir-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .dir-card p {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .dir-card .dir-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--teal-lite);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* span last card across 2 cols if 5 items in 3-col grid */
+    .dir-card:last-child:nth-child(3n - 1) {
+      grid-column: span 2;
+    }
+
+    /* ─── INQUIRY FORM ────────────────────────────── */
+    .section-form {
+      background: var(--off-white);
+      padding: 5rem 0;
+    }
+
+    .form-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .form-left h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .form-left p {
+      font-size: 0.9375rem;
+      color: var(--slate);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .trust-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      font-weight: 400;
+    }
+
+    .trust-item svg { flex-shrink: 0; margin-top: 2px; color: var(--teal); }
+
+    .form-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.25rem;
+    }
+
+    .form-panel h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-group {
+      margin-bottom: 1.125rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--slate-lt); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(13,148,136,0.12);
+    }
+
+    .form-group select { appearance: none; cursor: pointer; }
+
+    .select-wrap { position: relative; }
+
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--slate);
+      pointer-events: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.875rem;
+      background: var(--navy);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      background: var(--navy-mid);
+      transform: translateY(-1px);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 3.5rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.875rem;
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .footer-detail {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.5;
+    }
+
+    .footer-detail strong {
+      display: block;
+      font-weight: 700;
+      color: #FFFFFF;
+      font-size: 0.9375rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .footer-detail .sub {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      display: block;
+      margin-top: 0.1rem;
+    }
+
+    .footer-detail .reg-tag {
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: rgba(255,255,255,0.1);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .footer-contact a {
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 0.875rem;
+      word-break: break-all;
+      transition: opacity 0.2s;
+    }
+
+    .footer-contact a:hover { opacity: 0.8; }
+
+    .footer-bottom {
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-bottom span {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── DIVIDERS ───────────────────────────────── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner,
+      .capabilities-grid,
+      .form-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        display: none;
+      }
+
+      .directory-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .dir-card:last-child:nth-child(3n - 1) {
+        grid-column: span 1;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .directory-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── ANIMATION ──────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge { animation: fadeUp 0.5s ease both; }
+    .hero h1   { animation: fadeUp 0.5s 0.1s ease both; }
+    .hero p    { animation: fadeUp 0.5s 0.2s ease both; }
+    .hero .btn-primary { animation: fadeUp 0.5s 0.3s ease both; }
+    .hero-stats { animation: fadeUp 0.5s 0.4s ease both; }
   </style>
 </head>
 <body>
 
-<!-- ===================================================
-     NAVIGATION BAR
-=================================================== -->
-<nav class="fixed top-0 left-0 right-0 z-50" style="background:#0F172A; border-bottom: 1px solid #1E293B;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-
-      <!-- Logo -->
-      <a href="#" style="font-family:'Syne',sans-serif; font-weight:800; font-size:1.15rem; letter-spacing:0.08em; color:#FFFFFF; text-decoration:none; text-transform:uppercase;">
-        JG <span style="color:#0D9488;">Distributions</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="desktop-nav flex items-center gap-8">
-        <a href="#capabilities" class="nav-link">Capabilities</a>
-        <a href="#sectors" class="nav-link">Sectors</a>
-        <a href="#contact" class="nav-link">Contact Us</a>
-        <a href="#contact" class="btn-teal" style="padding:0.55rem 1.25rem; font-size:0.82rem;">Become a Partner</a>
-      </div>
-
-      <!-- Mobile Toggle -->
-      <button class="mobile-toggle items-center justify-center w-9 h-9 rounded" style="background:transparent; border:none; cursor:pointer;" onclick="toggleMobileNav()" aria-label="Toggle navigation">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <rect x="2" y="5" width="18" height="1.8" rx="0.9" fill="#CBD5E1"/>
-          <rect x="2" y="10.1" width="18" height="1.8" rx="0.9" fill="#CBD5E1"/>
-          <rect x="2" y="15.2" width="18" height="1.8" rx="0.9" fill="#CBD5E1"/>
-        </svg>
-      </button>
+  <!-- ────────────────────────────────────────────── -->
+  <!-- NAVIGATION                                    -->
+  <!-- ────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">JG Distributions<span></span></a>
+      <ul class="nav-links">
+        <li><a href="#directory">Product Inventory</a></li>
+        <li><a href="#supply">Supply Chain</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li>
+          <a href="#contact" class="btn-trade">Open Trade Account</a>
+        </li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" style="border-top:1px solid #1E293B; padding: 1rem 0 1.25rem;">
-      <div style="display:flex; flex-direction:column; gap:0.75rem;">
-        <a href="#capabilities" class="nav-link" onclick="toggleMobileNav()" style="font-size:1rem; padding:0.25rem 0;">Capabilities</a>
-        <a href="#sectors" class="nav-link" onclick="toggleMobileNav()" style="font-size:1rem; padding:0.25rem 0;">Sectors</a>
-        <a href="#contact" class="nav-link" onclick="toggleMobileNav()" style="font-size:1rem; padding:0.25rem 0;">Contact Us</a>
-        <a href="#contact" class="btn-teal" onclick="toggleMobileNav()" style="margin-top:0.5rem; text-align:center;">Become a Partner</a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-
-<!-- ===================================================
-     HERO SECTION
-=================================================== -->
-<section style="background:#0F172A; padding-top: 96px; position:relative; overflow:hidden; min-height:92vh; display:flex; align-items:center;">
-  <div class="hero-grid"></div>
-
-  <!-- Teal glow blob -->
-  <div style="position:absolute; top:-80px; right:-120px; width:520px; height:520px; background:radial-gradient(circle, rgba(13,148,136,0.13) 0%, transparent 70%); pointer-events:none;"></div>
-  <div style="position:absolute; bottom:-100px; left:-80px; width:380px; height:380px; background:radial-gradient(circle, rgba(13,148,136,0.07) 0%, transparent 70%); pointer-events:none;"></div>
-
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full" style="padding-top:4rem; padding-bottom:6rem;">
-    <div style="max-width: 760px;">
-
-      <!-- Eyebrow tag -->
-      <div class="fade-up-1">
-        <span class="section-tag" style="border-color:rgba(13,148,136,0.5); color:#0D9488;">Authorised UK & EU Distribution Partner</span>
-      </div>
-
-      <!-- Rule -->
-      <div class="hero-rule fade-up-1"></div>
-
-      <!-- Headline -->
-      <h1 class="fade-up-2" style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2.4rem,5vw,3.75rem); line-height:1.1; color:#FFFFFF; letter-spacing:-0.02em; margin-bottom:1.5rem;">
-        Global Supply Chain<br/>&amp; Distribution Partners
-      </h1>
-
-      <!-- Subheadline -->
-      <p class="fade-up-3" style="font-size:clamp(1rem,2vw,1.15rem); color:#94A3B8; line-height:1.75; max-width:600px; margin-bottom:2.5rem; font-weight:300;">
-        JG Distributions optimizes market reach and retail logistics for premium consumer brands across the United Kingdom and continental Europe.
-      </p>
-
-      <!-- CTA -->
-      <div class="fade-up-3">
-        <a href="#contact" class="btn-teal" style="font-size:0.95rem; padding:0.9rem 2rem;">
-          Partner With Us
-          <svg style="display:inline; margin-left:8px; vertical-align:-3px;" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <!-- Trust strip -->
-      <div style="margin-top:4rem; padding-top:2rem; border-top:1px solid #1E293B; display:flex; flex-wrap:wrap; gap:2.5rem;">
+  <!-- ────────────────────────────────────────────── -->
+  <!-- HERO                                          -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <!-- LEFT -->
         <div>
-          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.5rem; color:#FFFFFF;">UK &amp; EU</div>
-          <div style="font-size:0.8rem; color:#64748B; letter-spacing:0.05em; text-transform:uppercase; margin-top:2px;">Coverage Markets</div>
+          <div class="hero-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            UK &amp; European Distribution
+          </div>
+          <h1>
+            Multi-Category <em>Trade Sourcing</em><br />
+            &amp; Wholesale Distribution
+          </h1>
+          <p>
+            Supporting independent retail channels with direct procurement networks, localized inventory placement, and end-to-end supply chain logistics across the UK and Europe.
+          </p>
+          <a href="#directory" class="btn-primary">
+            View Sourcing Options
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </a>
         </div>
-        <div style="width:1px; background:#1E293B;"></div>
-        <div>
-          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.5rem; color:#FFFFFF;">3 Sectors</div>
-          <div style="font-size:0.8rem; color:#64748B; letter-spacing:0.05em; text-transform:uppercase; margin-top:2px;">Industry Verticals</div>
-        </div>
-        <div style="width:1px; background:#1E293B;"></div>
-        <div>
-          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.5rem; color:#FFFFFF;">B2B</div>
-          <div style="font-size:0.8rem; color:#64748B; letter-spacing:0.05em; text-transform:uppercase; margin-top:2px;">Wholesale Only</div>
+        <!-- RIGHT: stats -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-num">5<span>+</span></div>
+            <div class="stat-label">Product Categories</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">UK<span>&amp;</span>EU</div>
+            <div class="stat-label">Distribution Coverage</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">B2B<span>.</span></div>
+            <div class="stat-label">Trade-Only Accounts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">24<span>h</span></div>
+            <div class="stat-label">Procurement Response</div>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- ===================================================
-     OUR CAPABILITIES SECTION
-=================================================== -->
-<section id="capabilities" style="background:#FFFFFF; padding: 6rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-
-    <!-- Section header -->
-    <div style="margin-bottom:3.5rem;">
-      <span class="section-tag">Our Capabilities</span>
-      <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.8rem,4vw,2.6rem); color:#0F172A; letter-spacing:-0.02em; line-height:1.15; max-width:480px;">
-        End-to-End Distribution Infrastructure
-      </h2>
-      <p style="color:#475569; font-size:1rem; line-height:1.7; max-width:540px; margin-top:0.75rem;">
-        Purpose-built operational systems designed to protect brand equity while maximising market penetration across European distribution channels.
-      </p>
-    </div>
-
-    <!-- Cards grid -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem;">
-
-      <!-- Card 1 -->
-      <div class="cap-card">
-        <!-- Icon -->
-        <div style="width:48px; height:48px; background:rgba(13,148,136,0.08); border-radius:6px; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/>
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M7 13L5.4 5"/>
-          </svg>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.15rem; color:#0F172A; margin-bottom:0.75rem; letter-spacing:-0.01em;">End-to-End Logistics</h3>
-        <p style="color:#475569; font-size:0.93rem; line-height:1.7;">Centralized inventory placement and efficient fulfillment pipelines across major European marketplaces.</p>
+  <!-- ────────────────────────────────────────────── -->
+  <!-- SUPPLY CHAIN CAPABILITIES                     -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="section-supply" id="supply">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Supply Chain</span>
+        <h2 class="section-title">Our Distribution Infrastructure</h2>
+        <p class="section-sub">
+          Built for reliability. Structured for scale. JG Distributions operates a resilient network designed to keep retail channels consistently stocked.
+        </p>
       </div>
 
-      <!-- Card 2 -->
-      <div class="cap-card">
-        <div style="width:48px; height:48px; background:rgba(13,148,136,0.08); border-radius:6px; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="M9 12l2 2 4-4"/>
-          </svg>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.15rem; color:#0F172A; margin-bottom:0.75rem; letter-spacing:-0.01em;">Brand Protection &amp; Integrity</h3>
-        <p style="color:#475569; font-size:0.93rem; line-height:1.7;">Active monitoring of distribution channels to maintain premium brand positioning and corporate pricing stability.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="cap-card">
-        <div style="width:48px; height:48px; background:rgba(13,148,136,0.08); border-radius:6px; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.15rem; color:#0F172A; margin-bottom:0.75rem; letter-spacing:-0.01em;">Data-Driven Growth</h3>
-        <p style="color:#475569; font-size:0.93rem; line-height:1.7;">Leveraging advanced digital marketing and marketplace analytics to scale product visibility and localized consumer demand.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================================================
-     PRODUCT SECTORS SECTION
-=================================================== -->
-<section id="sectors" style="background:#F8FAFC; padding:6rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-
-    <!-- Section header -->
-    <div style="margin-bottom:3.5rem;">
-      <span class="section-tag">Product Sectors</span>
-      <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.8rem,4vw,2.6rem); color:#0F172A; letter-spacing:-0.02em; line-height:1.15; max-width:520px;">
-        Industry Verticals We Serve
-      </h2>
-      <p style="color:#475569; font-size:1rem; line-height:1.7; max-width:560px; margin-top:0.75rem;">
-        Specialist knowledge and dedicated distribution infrastructure across three core consumer product categories.
-      </p>
-    </div>
-
-    <!-- Sectors grid -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px,1fr)); gap:2rem;">
-
-      <!-- Sector 1 -->
-      <div class="sector-item">
-        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-          <div style="width:40px; height:40px; background:#0F172A; border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="capabilities-grid">
+        <!-- Card 1 -->
+        <div class="cap-card">
+          <div class="cap-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
               <polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
           </div>
-          <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; color:#0F172A; letter-spacing:-0.01em; line-height:1.3;">Fast-Moving Consumer Goods (FMCG)</h3>
+          <h3>Broad Sourcing Infrastructure</h3>
+          <p>Direct partnerships with leading domestic and global consumer brands, giving us privileged access to verified product pipelines across high-demand categories.</p>
         </div>
-        <p style="color:#475569; font-size:0.93rem; line-height:1.7;">Comprehensive distribution solutions for household care, personal hygiene, groceries, and premium pet supplies.</p>
-      </div>
-
-      <!-- Sector 2 -->
-      <div class="sector-item">
-        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-          <div style="width:40px; height:40px; background:#0F172A; border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="7" width="20" height="14" rx="2"/>
-              <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
-              <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+        <!-- Card 2 -->
+        <div class="cap-card">
+          <div class="cap-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.07 4.93l-1.41 1.41M5.34 18.66L3.93 20.07M20.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93"/>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
             </svg>
           </div>
-          <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; color:#0F172A; letter-spacing:-0.01em; line-height:1.3;">Home, Lifestyle &amp; Electronics</h3>
+          <h3>Strategic Channel Control</h3>
+          <p>Active distribution management to safeguard pricing stability and brand value — ensuring compliant wholesale flows that protect retailer margins and brand integrity.</p>
         </div>
-        <p style="color:#475569; font-size:0.93rem; line-height:1.7;">Scaled procurement and logistics for consumer goods, tools, garden utilities, and domestic hardware.</p>
+        <!-- Card 3 -->
+        <div class="cap-card">
+          <div class="cap-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13" rx="1"/>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <h3>Regional Warehousing</h3>
+          <p>Agile regional logistics nodes to guarantee reliable turnaround times, with flexible inventory placement across the UK and mainland Europe to minimise lead times.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── -->
+  <!-- PRODUCT DIRECTORY                             -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="section-directory" id="directory">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Product Categories</span>
+        <h2 class="section-title">Wholesale Trade Directory</h2>
+        <p class="section-sub">
+          We source, hold, and distribute across all major everyday consumer goods sectors — giving trade buyers a single-point procurement solution.
+        </p>
       </div>
 
-      <!-- Sector 3 -->
-      <div class="sector-item">
-        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-          <div style="width:40px; height:40px; background:#0F172A; border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="directory-grid">
+        <!-- FMCG -->
+        <div class="dir-card">
+          <div class="dir-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </div>
+          <h3>Fast-Moving Consumer Goods</h3>
+          <p>Household cleaning products, everyday essentials, groceries, and premium pet care utilities. High-velocity lines for cash-and-carry and independent retail.</p>
+          <span class="dir-tag">FMCG</span>
+        </div>
+
+        <!-- Home & Lifestyle -->
+        <div class="dir-card">
+          <div class="dir-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3>Home &amp; Lifestyle</h3>
+          <p>Kitchen essentials, small domestic appliances, tools, garden utilities, and hardware. Curated ranges for home improvement, DIY, and lifestyle retail buyers.</p>
+          <span class="dir-tag">Home &amp; Garden</span>
+        </div>
+
+        <!-- Health & Beauty -->
+        <div class="dir-card">
+          <div class="dir-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
             </svg>
           </div>
-          <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; color:#0F172A; letter-spacing:-0.01em; line-height:1.3;">Health, Wellness &amp; Personal Care</h3>
+          <h3>Health &amp; Beauty</h3>
+          <p>Skincare formulations, cosmetics, personal care hygiene products, and wellness supplies. Trusted brand lines and emerging formulations for pharmacy and beauty retail.</p>
+          <span class="dir-tag">Health &amp; Beauty</span>
         </div>
-        <p style="color:#475569; font-size:0.93rem; line-height:1.7;">Specialist distribution pathways for skincare formulations, corporate wellness products, and personal care cosmetics.</p>
-      </div>
 
-    </div>
-
-    <!-- Divider callout bar -->
-    <div style="margin-top:3.5rem; background:#0F172A; border-radius:4px; padding:2rem 2.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.5rem;">
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem; color:#FFFFFF; margin-bottom:0.3rem;">Representing premium brands across Europe</div>
-        <div style="color:#64748B; font-size:0.88rem;">Compliant multi-channel distribution with full traceability and reporting.</div>
-      </div>
-      <a href="#contact" class="btn-teal" style="white-space:nowrap;">Discuss Your Brand</a>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===================================================
-     PARTNER WITH US / CONTACT SECTION
-=================================================== -->
-<section id="contact" style="background:#FFFFFF; padding:6rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;" class="contact-grid">
-
-      <!-- Left: Copy -->
-      <div>
-        <span class="section-tag">Partner With Us</span>
-        <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.7rem,3.5vw,2.4rem); color:#0F172A; letter-spacing:-0.02em; line-height:1.15; margin-bottom:1.25rem;">
-          Ready to Scale Your Distribution Footprint?
-        </h2>
-        <p style="color:#475569; font-size:1rem; line-height:1.75; margin-bottom:2rem;">
-          Are you a manufacturer or brand owner looking to optimize and scale your digital distribution footprint? Contact our corporate purchasing team today to discuss a trading partnership.
-        </p>
-
-        <!-- Bullet list of what to expect -->
-        <div style="display:flex; flex-direction:column; gap:1rem;">
-          <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-            <div style="width:22px; height:22px; background:rgba(13,148,136,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span style="color:#334155; font-size:0.93rem; line-height:1.6;">Initial response within one working day</span>
+        <!-- Toys, Hobbies & Leisure -->
+        <div class="dir-card">
+          <div class="dir-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="3"/>
+              <path d="M12 11v4"/>
+              <path d="M9 17h6"/>
+              <rect x="2" y="3" width="20" height="18" rx="2"/>
+            </svg>
           </div>
-          <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-            <div style="width:22px; height:22px; background:rgba(13,148,136,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span style="color:#334155; font-size:0.93rem; line-height:1.6;">Full NDA and compliance documentation provided</span>
+          <h3>Toys, Hobbies &amp; Leisure</h3>
+          <p>Gifts, educational toys, board games, active leisure gear, and seasonal goods. Strong seasonal volumes and year-round hobby retail lines for independent toy shops and gifting specialists.</p>
+          <span class="dir-tag">Toys &amp; Leisure</span>
+        </div>
+
+        <!-- Office, Consumer Tech & Accessories -->
+        <div class="dir-card">
+          <div class="dir-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <polyline points="8 21 12 17 16 21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
           </div>
-          <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-            <div style="width:22px; height:22px; background:rgba(13,148,136,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span style="color:#334155; font-size:0.93rem; line-height:1.6;">Dedicated account manager assigned on partnership commencement</span>
-          </div>
+          <h3>Office, Consumer Tech &amp; Accessories</h3>
+          <p>Office workspace supplies, computing accessories, organisation tools, and consumer electronics. Broad SKU coverage for office supply retailers, e-commerce resellers, and trade buyers.</p>
+          <span class="dir-tag">Tech &amp; Office</span>
         </div>
-
-        <!-- Contact detail -->
-        <div style="margin-top:2.5rem; padding:1.25rem 1.5rem; border:1px solid #E2E8F0; border-radius:4px; background:#F8FAFC;">
-          <div style="font-size:0.78rem; color:#64748B; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:0.4rem;">Corporate Enquiries</div>
-          <a href="mailto:enquiries@jgdistributions.co.uk" style="color:#0D9488; font-size:0.95rem; font-weight:500; text-decoration:none; font-family:'Syne',sans-serif;">enquiries@jgdistributions.co.uk</a>
-        </div>
-      </div>
-
-      <!-- Right: Form -->
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:4px; padding:2.5rem;">
-        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.2rem; color:#0F172A; margin-bottom:0.5rem;">Submit an Enquiry</h3>
-        <p style="color:#64748B; font-size:0.88rem; margin-bottom:2rem;">All fields are required. We handle enquiries in strict confidence.</p>
-
-        <form onsubmit="handleFormSubmit(event)">
-          <div style="display:flex; flex-direction:column; gap:1.25rem;">
-
-            <div>
-              <label style="display:block; font-size:0.82rem; font-weight:600; color:#374151; margin-bottom:0.4rem; letter-spacing:0.02em;">Full Name</label>
-              <input type="text" class="form-input" placeholder="e.g. Sarah Thompson" required />
-            </div>
-
-            <div>
-              <label style="display:block; font-size:0.82rem; font-weight:600; color:#374151; margin-bottom:0.4rem; letter-spacing:0.02em;">Company Name</label>
-              <input type="text" class="form-input" placeholder="e.g. Acme Consumer Brands Ltd" required />
-            </div>
-
-            <div>
-              <label style="display:block; font-size:0.82rem; font-weight:600; color:#374151; margin-bottom:0.4rem; letter-spacing:0.02em;">Email Address</label>
-              <input type="email" class="form-input" placeholder="your@company.com" required />
-            </div>
-
-            <div>
-              <label style="display:block; font-size:0.82rem; font-weight:600; color:#374151; margin-bottom:0.4rem; letter-spacing:0.02em;">Message</label>
-              <textarea class="form-input" rows="5" placeholder="Please describe your brand, product category, and distribution requirements..." required style="resize:vertical; min-height:120px;"></textarea>
-            </div>
-
-            <button type="submit" class="btn-navy" style="width:100%; text-align:center; padding:0.95rem; font-size:0.9rem;">
-              Submit Inquiry
-            </button>
-
-          </div>
-        </form>
-
-        <!-- Success message (hidden by default) -->
-        <div id="form-success" style="display:none; margin-top:1rem; background:rgba(13,148,136,0.08); border:1px solid rgba(13,148,136,0.3); border-radius:3px; padding:1rem 1.25rem;">
-          <div style="display:flex; align-items:center; gap:0.6rem; color:#0D9488; font-weight:600; font-size:0.9rem;">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#0D9488" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#0D9488" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Enquiry received. We'll be in touch within one working day.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================================================
-     FOOTER
-=================================================== -->
-<footer style="background:#0F172A; border-top:1px solid #1E293B;">
-
-  <!-- Main footer grid -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-8" style="padding-top:4rem; padding-bottom:3rem;">
-    <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:3rem;" class="footer-grid">
-
-      <!-- Left: Branding -->
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; color:#FFFFFF; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;">
-          JG <span style="color:#0D9488;">Distributions</span>
-        </div>
-        <p style="color:#64748B; font-size:0.88rem; line-height:1.75; max-width:280px; margin-bottom:1.5rem;">
-          A specialist B2B wholesale and distribution partner for premium consumer brands operating across the United Kingdom and continental European markets.
-        </p>
-        <!-- Social / trust badges area -->
-        <div style="display:flex; gap:0.75rem; align-items:center;">
-          <div style="padding:0.4rem 0.8rem; border:1px solid #1E293B; border-radius:3px; font-size:0.72rem; color:#64748B; letter-spacing:0.06em; text-transform:uppercase; font-family:'Syne',sans-serif;">UK Registered</div>
-          <div style="padding:0.4rem 0.8rem; border:1px solid #1E293B; border-radius:3px; font-size:0.72rem; color:#64748B; letter-spacing:0.06em; text-transform:uppercase; font-family:'Syne',sans-serif;">B2B Only</div>
-        </div>
-      </div>
-
-      <!-- Middle: UK Corporate Profile -->
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#0D9488; margin-bottom:1.25rem;">UK Corporate Profile</div>
-
-        <div style="margin-bottom:0.5rem;">
-          <span style="color:#FFFFFF; font-size:0.93rem; font-weight:500; font-family:'Syne',sans-serif;">Jackson Group Distributions Ltd</span>
-        </div>
-        <div style="margin-bottom:1.25rem;">
-          <span style="color:#64748B; font-size:0.8rem; font-style:italic;">(Formerly operating as Cellvula Health Ltd)</span>
-        </div>
-
-        <div style="display:flex; flex-direction:column; gap:0.75rem;">
-          <div>
-            <div style="font-size:0.72rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.2rem;">Company Registration No.</div>
-            <div style="color:#CBD5E1; font-size:0.9rem; font-family:'Syne',sans-serif; font-weight:600; letter-spacing:0.04em;">16930038</div>
-          </div>
-          <div>
-            <div style="font-size:0.72rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.2rem;">UK VAT Status</div>
-            <div style="display:inline-flex; align-items:center; gap:0.4rem;">
-              <div style="width:6px; height:6px; background:#F59E0B; border-radius:50%;"></div>
-              <span style="color:#FCD34D; font-size:0.875rem; font-weight:500;">Registration in Progress</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Global Registrations & Contact -->
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#0D9488; margin-bottom:1.25rem;">Global Registrations</div>
-
-        <div style="margin-bottom:1.5rem;">
-          <div style="font-size:0.72rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.4rem;">German VAT (USt-IdNr.)</div>
-          <div style="display:inline-flex; align-items:center; gap:0.4rem;">
-            <div style="width:6px; height:6px; background:#F59E0B; border-radius:50%;"></div>
-            <span style="color:#FCD34D; font-size:0.875rem; font-weight:500;">Application Pending Verification</span>
-          </div>
-        </div>
-
-        <div style="border-top:1px solid #1E293B; padding-top:1.5rem;">
-          <div style="font-size:0.72rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Corporate Contact</div>
-          <a href="mailto:enquiries@jgdistributions.co.uk" style="color:#0D9488; font-size:0.9rem; font-weight:500; text-decoration:none; word-break:break-all; font-family:'Syne',sans-serif; transition:color 0.2s;" onmouseover="this.style.color='#14B8A6'" onmouseout="this.style.color='#0D9488'">
-            enquiries@jgdistributions.co.uk
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Copyright bar -->
-  <div style="border-top:1px solid #1E293B;">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8" style="padding-top:1.25rem; padding-bottom:1.25rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem;">
-      <span style="color:#475569; font-size:0.82rem;" id="copyright-text"></span>
-      <div style="display:flex; gap:1.5rem;">
-        <a href="#" class="footer-link">Privacy Policy</a>
-        <a href="#" class="footer-link">Terms of Trade</a>
-        <a href="#" class="footer-link">Compliance</a>
       </div>
     </div>
-  </div>
+  </section>
 
-</footer>
+  <!-- ────────────────────────────────────────────── -->
+  <!-- INQUIRY / TRADE APPLICATION FORM              -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="section-form" id="contact">
+    <div class="container">
+      <div class="form-wrapper">
+        <!-- LEFT: contextual copy -->
+        <div class="form-left">
+          <span class="section-label">Trade Applications</span>
+          <h2>Open a Wholesale Account</h2>
+          <p>
+            Are you a supplier or brand manager seeking an established distribution partner? Submit your corporate registry details below to register with our procurement division. Our trade team will review your application and be in touch within one business day.
+          </p>
+          <div class="trust-list">
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Verified trade accounts only — no public retail sales.
+            </div>
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 8 6 12 14 4"/></svg>
+              UK &amp; EU registered businesses welcome.
+            </div>
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Dedicated account manager assigned on approval.
+            </div>
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 8 6 12 14 4"/></svg>
+              Competitive wholesale pricing with tiered volume discounts.
+            </div>
+          </div>
+        </div>
 
+        <!-- RIGHT: form -->
+        <div class="form-panel">
+          <h3>Trade Account Application</h3>
+          <form onsubmit="return false;">
+            <div class="form-group">
+              <label for="contact-name">Contact Name</label>
+              <input type="text" id="contact-name" name="contact_name" placeholder="Your full name" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="biz-name">Registered Business Name</label>
+              <input type="text" id="biz-name" name="business_name" placeholder="Legal company name" autocomplete="organization" />
+            </div>
+            <div class="form-group">
+              <label for="corp-email">Corporate Email Address</label>
+              <input type="email" id="corp-email" name="email" placeholder="name@yourcompany.com" autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="categories">Target Product Categories</label>
+              <div class="select-wrap">
+                <select id="categories" name="categories">
+                  <option value="" disabled selected>Select primary category of interest</option>
+                  <option value="fmcg">Fast-Moving Consumer Goods (FMCG)</option>
+                  <option value="home">Home &amp; Lifestyle</option>
+                  <option value="health">Health &amp; Beauty</option>
+                  <option value="toys">Toys, Hobbies &amp; Leisure</option>
+                  <option value="tech">Office, Consumer Tech &amp; Accessories</option>
+                  <option value="multi">Multiple Categories</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit">Submit Application</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ===================================================
-     RESPONSIVE OVERRIDES
-=================================================== -->
-<style>
-  @media (max-width: 900px) {
-    .contact-grid {
-      grid-template-columns: 1fr !important;
-      gap: 2.5rem !important;
-    }
-    .footer-grid {
-      grid-template-columns: 1fr !important;
-      gap: 2.5rem !important;
-    }
-  }
-</style>
+  <!-- ────────────────────────────────────────────── -->
+  <!-- FOOTER                                        -->
+  <!-- ────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
 
+        <!-- LEFT: Brand -->
+        <div>
+          <div class="footer-logo">JG Distributions</div>
+          <p class="footer-desc">
+            Multi-category wholesale trade distributor serving independent retail channels across the UK and Europe. Direct procurement networks, regional warehousing, and dedicated trade account management.
+          </p>
+          <p class="footer-copy">
+            &copy; <span id="footer-year"></span> JG Distributions. All Rights Reserved.
+          </p>
+        </div>
 
-<!-- ===================================================
-     JAVASCRIPT
-=================================================== -->
-<script>
-  // Auto copyright year
-  document.getElementById('copyright-text').textContent =
-    '\u00A9 ' + new Date().getFullYear() + ' JG Distributions. All Rights Reserved.';
+        <!-- MIDDLE: UK Corporate Profile -->
+        <div class="footer-col">
+          <h4>UK Corporate Profile</h4>
+          <ul>
+            <li>
+              <span class="footer-detail">
+                <strong>Cellvula Health Ltd</strong>
+                <span class="sub">Trading as JG Distributions</span>
+              </span>
+            </li>
+            <li>
+              <span class="footer-detail">
+                Company Registration No.
+                <strong>16930038</strong>
+              </span>
+            </li>
+            <li>
+              <span class="footer-detail">
+                UK VAT
+                <span class="reg-tag">Registration in Progress</span>
+              </span>
+            </li>
+          </ul>
+        </div>
 
-  // Mobile nav toggle
-  function toggleMobileNav() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('open');
-  }
+        <!-- RIGHT: Global Registrations + Contact -->
+        <div class="footer-col">
+          <h4>Global Registrations</h4>
+          <ul>
+            <li>
+              <span class="footer-detail">
+                German VAT ID (USt-IdNr.)
+                <span class="reg-tag">Application Pending Verification</span>
+              </span>
+            </li>
+            <li style="margin-top: 1.5rem;">
+              <h4 style="margin-bottom:0.75rem;">Trade Enquiries</h4>
+              <span class="footer-contact">
+                <a href="mailto:enquiries@jgdistributions.co.uk">enquiries@jgdistributions.co.uk</a>
+              </span>
+            </li>
+          </ul>
+        </div>
 
-  // Form submission handler
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    form.style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-  }
+      </div>
 
-  // Smooth active nav highlight on scroll
-  const sections = document.querySelectorAll('section[id], footer[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+      <div class="footer-bottom">
+        <span>Registered in England &amp; Wales. Trading as JG Distributions.</span>
+        <span>Wholesale trade only. Not open to general public.</span>
+      </div>
+    </div>
+  </footer>
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => {
-          link.style.color = '';
-          if (link.getAttribute('href') === '#' + entry.target.id) {
-            link.style.color = '#FFFFFF';
-          }
-        });
-      }
-    });
-  }, { threshold: 0.4 });
-
-  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
-</script>
+  <script>
+    // Auto-update copyright year
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
